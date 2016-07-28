@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Class10.Models;
 
 namespace Class10
 {
@@ -12,6 +13,7 @@ namespace Class10
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new SampleData());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
