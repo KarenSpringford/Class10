@@ -7,26 +7,24 @@ using Class10.Models;
 
 namespace Class10.Controllers
 {
-    [Authorize]
+    
     public class StoreController : Controller
     {
+        //represents the new database
+        MusicStoreContext storeDB = new MusicStoreContext();
+
         //
         // GET: /Store/
-        [AllowAnonymous]
         public ActionResult Index()
         {
-            List<Genre> genres = new List<Genre>
-            {
-                new Genre("Disco"),
-                new Genre("Jazz"),
-                new Genre("Rock")
-            };
+            List<Genre> genres = storeDB.Genres.ToList();
+
             return View(genres);
         }
 
         //
         // GET: /Store/Browse?genre=Disco
-        [AllowAnonymous]
+   
         public ActionResult Browse(string genre)
         {
             Genre genreModel = new Genre(genre);
@@ -34,7 +32,7 @@ namespace Class10.Controllers
         }
         //
         // GET: /Store/Details/5
-        [AllowAnonymous]
+
         public ActionResult Details(int id = 1)
         {
             Album album = new Album("Album " + id);
